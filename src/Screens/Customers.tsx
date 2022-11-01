@@ -76,17 +76,19 @@ const Customers = () => {
         />
       </View>
       {/* body */}
-      {customers.map(item => {
-        const result = countItemPerCustomer(item[0], trackedItems);
-        return (
-          <CustomerItem
-            key={item[0]}
-            id={item[0]}
-            number={result}
-            data={item[1]}
-          />
-        );
-      })}
+      {customers
+        .filter(customer => customer[1].name.includes(searchCustomer))
+        .map(item => {
+          const result = countItemPerCustomer(item[0], trackedItems);
+          return (
+            <CustomerItem
+              key={item[0]}
+              id={item[0]}
+              number={result}
+              data={item[1]}
+            />
+          );
+        })}
     </ScrollView>
   );
 };
