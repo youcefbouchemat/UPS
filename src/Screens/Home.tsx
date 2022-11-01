@@ -7,7 +7,7 @@ const Home = () => {
   const tailwind = useTailwind();
   return (
     <View style={tailwind('bg-white flex-1')}>
-      <Text style={tailwind('text-red-600 font-mono')}>Hello world</Text>
+      <Text style={tailwind('text-blue-600')}>Hello world</Text>
     </View>
   );
 };
