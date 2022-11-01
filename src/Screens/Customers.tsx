@@ -6,11 +6,59 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import colors from '../../assets/colors';
+import axios from 'axios';
+import {axiosInstance} from '../../config/axios';
+import CustomerItem from '../Components/CustomerItem';
+import {countItemPerCustomer} from '../Functions/countItemPerCustomer';
 
 const Customers = () => {
   const [searchCustomer, setSearchCustomer] = useState('');
+
+  const [customers, setCustomers] = useState([]);
+  const [trackedItems, setTrackedItems] = useState([]);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    axiosInstance
+      .get('customers.json', {cancelToken: signal.token})
+      .then(response => {
+        const entries = Object.entries(response.data);
+        setCustomers(entries);
+      })
+      .catch(error => {
+        if (axios.isCancel(error)) {
+          console.log('cancel from axios');
+        } else {
+          console.log(error.response);
+        }
+      });
+    return () => {
+      signal.cancel();
+    };
+  }, []);
+
+  useEffect(() => {
+    const signal = axios.CancelToken.source();
+    axiosInstance
+      .get('trackingItems.json', {cancelToken: signal.token})
+      .then(response => {
+        const entries = Object.entries(response.data);
+        setTrackedItems(entries);
+      })
+      .catch(error => {
+        if (axios.isCancel(error)) {
+          console.log('cancel from axios');
+        } else {
+          console.log(error.response);
+        }
+      });
+    return () => {
+      signal.cancel();
+    };
+  }, []);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
@@ -27,6 +75,18 @@ const Customers = () => {
           style={styles.searchBatInput}
         />
       </View>
+      {/* body */}
+      {customers.map(item => {
+        const result = countItemPerCustomer(item[0], trackedItems);
+        return (
+          <CustomerItem
+            key={item[0]}
+            id={item[0]}
+            number={result}
+            data={item[1]}
+          />
+        );
+      })}
     </ScrollView>
   );
 };
@@ -35,11 +95,12 @@ export default Customers;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: `${colors.primaryGreen}`,
     alignItems: 'center',
+    paddingBottom: 120,
   },
-  imageHeader: {height: '25%', width: '100%'},
+  imageHeader: {height: 200, width: '100%'},
   searchBarContainer: {
     width: '100%',
     backgroundColor: colors.light,

@@ -21,7 +21,7 @@ export default {
   pink: '#ff4c98',
   gold: 'gold',
   line: '#282C35',
-  gray: '#CCCCCC',
+  gray: '#CCCCCC50',
   darkGray: '#999999',
 
   darkOverlayColor: 'rgba(0, 0, 0, 0.4)',
