@@ -1,5 +1,7 @@
 export default {
   primary: '#637aff',
+  primaryGreen: '#59C1CC',
+  primaryPink: '#EB6A7C',
   primaryDark: '#2759ff',
   primaryLite: '#637aff99',
   black: '#000',

@@ -1,30 +1,30 @@
-import {InteractionManager, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {Icon} from 'react-native-elements';
 import TabBarButton from './TabBarButton';
 
-import Home from '../Screens/Home';
-import Search from '../Screens/Search';
-import Add from '../Screens/Add';
-import Like from '../Screens/Like';
-import Account from '../Screens/Account';
+import Orders from '../Screens/Orders';
+import Customers from '../Screens/Customers';
+import colors from '../../assets/colors';
 
 const bottomBars = [
   {
-    route: 'Home',
-    label: 'Home',
-    type: 'octicon',
-    icon: 'home',
-    component: Home,
+    route: 'Customers',
+    label: 'Customers',
+    type: 'material',
+    icon: 'groups',
+    color: colors.primaryGreen,
+    component: Customers,
   },
+
   {
-    route: 'Search',
-    label: 'Search',
-    type: 'antdesign',
-    icon: 'search1',
-    component: Search,
+    route: 'Orders',
+    label: 'Orders',
+    type: 'entypo',
+    icon: 'box',
+    color: colors.primaryPink,
+    component: Orders,
   },
 ];
 

@@ -2,7 +2,6 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useEffect, useRef} from 'react';
 import {Icon} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import colors from '../../assets/colors';
 
 const TabBarButton = (props: {
   item: any;
@@ -56,7 +55,7 @@ const TabBarButton = (props: {
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Animatable.View
         ref={viewRef}
-        duration={300}
+        duration={600}
         style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <View
           style={{
@@ -73,7 +72,7 @@ const TabBarButton = (props: {
             ref={circleRef}
             style={{
               ...StyleSheet.absoluteFillObject,
-              backgroundColor: colors.primary,
+              backgroundColor: item.color,
               borderRadius: animatableViewDimension / 2,
               alignItems: 'center',
               justifyContent: 'center',
@@ -83,13 +82,17 @@ const TabBarButton = (props: {
             onPress={onPress}
             name={item.icon}
             type={item.type}
-            color={focused ? 'white' : colors.primary}
+            color={focused ? 'white' : item.color}
           />
         </View>
 
         <Animatable.Text
           ref={textRef}
-          style={{fontSize: 10, textAlign: 'center', color: colors.primary}}>
+          style={{
+            fontSize: 10,
+            textAlign: 'center',
+            color: item.color,
+          }}>
           {item.label}
         </Animatable.Text>
       </Animatable.View>
