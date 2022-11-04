@@ -92,6 +92,7 @@ const TabBarButton = (props: {
             fontSize: 10,
             textAlign: 'center',
             color: item.color,
+            fontFamily: 'NunitoSans-SemiBold',
           }}>
           {item.label}
         </Animatable.Text>

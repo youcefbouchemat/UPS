@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   searchBatInput: {
+    fontFamily: 'NunitoSans-SemiBold',
     backgroundColor: colors.primaryGreen,
     borderRadius: 10,
     padding: 16,

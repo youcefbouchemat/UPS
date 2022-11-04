@@ -45,7 +45,11 @@ const styles = StyleSheet.create({
     width: '90%',
     maxWidth: 500,
   },
-  textName: {color: 'black', fontSize: 24, fontWeight: 'bold'},
-  textID: {color: colors.primaryGreen, fontSize: 15},
-  textemail: {color: 'black', fontSize: 15},
+  textName: {color: 'black', fontSize: 24, fontFamily: 'NunitoSans-Black'},
+  textID: {
+    color: colors.primaryGreen,
+    fontSize: 15,
+    fontFamily: 'NunitoSans-SemiBold',
+  },
+  textemail: {color: 'black', fontSize: 15, fontFamily: 'NunitoSans-SemiBold'},
 });
