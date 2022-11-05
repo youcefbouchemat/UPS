@@ -23,6 +23,7 @@ export default {
   line: '#282C35',
   gray: '#CCCCCC50',
   darkGray: '#999999',
+  sketelonbg: '#d3d3d3cc',
 
   darkOverlayColor: 'rgba(0, 0, 0, 0.4)',
   darkOverlayColor2: 'rgba(0, 0, 0, 0.8)',

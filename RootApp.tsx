@@ -3,6 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomNavBar from './src/Components/BottomNavBar';
+import ModalScreen from './src/Screens/ModalScreen';
 
 const RootApp = () => {
   const Stack = createNativeStackNavigator();
@@ -13,6 +14,11 @@ const RootApp = () => {
           <Stack.Screen
             name="BottomNavBar"
             component={BottomNavBar}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="ModalScreen"
+            component={ModalScreen}
             options={{headerShown: false}}
           />
         </Stack.Group>

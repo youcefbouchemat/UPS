@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useEffect, useRef} from 'react';
-import {Icon} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
+import {Icon} from '@rneui/base';
 
 const TabBarButton = (props: {
   item: any;

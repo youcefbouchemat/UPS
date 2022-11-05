@@ -84,7 +84,7 @@ const Customers = () => {
             <CustomerItem
               key={item[0]}
               id={item[0]}
-              number={result}
+              items={result}
               data={item[1]}
             />
           );

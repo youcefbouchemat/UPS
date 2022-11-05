@@ -1,9 +1,9 @@
 export const countItemPerCustomer = (id, items) => {
-  let count = 0;
+  let result = [];
   for (let index = 0; index < items.length; index++) {
     if (id === items[index][1].customer_id) {
-      count += 1;
+      result.push(items[index]);
     }
   }
-  return count;
+  return result;
 };

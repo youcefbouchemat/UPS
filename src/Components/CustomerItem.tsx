@@ -1,18 +1,27 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 import colors from '../../assets/colors';
-import {Icon} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
+import {Icon} from '@rneui/themed';
 
 const CustomerItem = props => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate('ModalScreen', {
+          name: props.data.name,
+          items: props.items,
+        })
+      }>
       <View style={{flexDirection: 'row'}}>
         <View style={{flex: 1}}>
           <Text style={styles.textName}>{props.data.name}</Text>
           <Text style={styles.textID}>ID : {props.id}</Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-          <Text style={styles.textID}>{props.number}x</Text>
+          <Text style={styles.textID}>{props.items.length}x</Text>
           <Icon
             name="box"
             type="entypo"
