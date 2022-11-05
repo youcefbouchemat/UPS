@@ -3,11 +3,24 @@ import React from 'react';
 import {useTailwind} from 'tailwind-rn/dist';
 import colors from '../../assets/colors';
 import {Icon} from '@rneui/themed';
+import {Skeleton} from '@rneui/themed';
 
 const OrderCard = props => {
   const tw = useTailwind();
   const data = props.data.length > 0 ? props.data[0][1] : null;
   const items = props.items;
+
+  if (!data) {
+    return (
+      <View style={styles.skeletonContainer}>
+        <Skeleton width="100%" height={250} skeletonStyle={styles.sketlon} />
+        <View style={{height: 20}}></View>
+        <Skeleton width="100%" height={250} skeletonStyle={styles.sketlon} />
+        <View style={{height: 20}}></View>
+        <Skeleton width="100%" height={250} skeletonStyle={styles.sketlon} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -59,4 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  skeletonContainer: {padding: 20, borderRadius: 20},
+  sketlon: {backgroundColor: colors.sketelonbg},
 });
