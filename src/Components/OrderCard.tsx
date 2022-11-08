@@ -3,6 +3,7 @@ import React from 'react';
 import {useTailwind} from 'tailwind-rn/dist';
 import colors from '../../assets/colors';
 import {Icon} from '@rneui/themed';
+import MapView, {Marker} from 'react-native-maps';
 import {Skeleton} from '@rneui/themed';
 
 const OrderCard = props => {
@@ -24,35 +25,56 @@ const OrderCard = props => {
 
   return (
     <View style={styles.container}>
-      <Icon name="box" type="entypo" color={colors.white} size={50} />
-      <Text>
-        {data?.carrier.toUpperCase()} : {data?.trackingId.toUpperCase()}
-      </Text>
-      <Text>Expected Delivery : {data?.createdAt}</Text>
-
-      <View style={styles.adressContainer}>
-        <Text>Address</Text>
+      <View style={styles.secondContainer}>
+        <Icon name="box" type="entypo" color={colors.white} size={50} />
         <Text>
-          {data?.Address}, {data?.City}
+          {data?.carrier.toUpperCase()} : {data?.trackingId.toUpperCase()}
         </Text>
-        <Text>Shipping cost ${data?.shippingCost}</Text>
-      </View>
+        <Text>Expected Delivery : {data?.createdAt}</Text>
 
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        style={{width: '100%'}}
-        data={items}
-        renderItem={({index, item}) => {
-          return (
-            <View key={index} style={styles.flatlistContainer}>
-              <Text>{item.name}</Text>
-              <Text>x{item.quantity}</Text>
-            </View>
-          );
+        <View style={styles.adressContainer}>
+          <Text>Address</Text>
+          <Text>
+            {data?.Address}, {data?.City}
+          </Text>
+          <Text>Shipping cost ${data?.shippingCost}</Text>
+        </View>
+
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          style={{width: '100%'}}
+          data={items}
+          renderItem={({index, item}) => {
+            return (
+              <View key={index} style={styles.flatlistContainer}>
+                <Text>{item.name}</Text>
+                <Text>x{item.quantity}</Text>
+              </View>
+            );
+          }}
+          key={item => item.item_id}
+        />
+      </View>
+      <MapView
+        initialRegion={{
+          latitude: data?.Lat,
+          longitude: data?.Lng,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
         }}
-        key={item => item.item_id}
-      />
+        style={{height: 150, width: '100%'}}>
+        {data.Lat && data?.Lng && (
+          <Marker
+            key={1}
+            coordinate={{latitude: data?.Lat, longitude: data?.Lng}}
+            title={data?.Address}
+            description={data?.City}
+            identifier="origin"
+            pinColor={colors.primaryGreen}
+          />
+        )}
+      </MapView>
     </View>
   );
 };
@@ -64,9 +86,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryGreen,
     borderRadius: 10,
     margin: 10,
-    alignItems: 'center',
-    padding: 20,
   },
+  secondContainer: {padding: 20, alignItems: 'center'},
   adressContainer: {alignItems: 'center', paddingVertical: 20},
   flatlistContainer: {
     flexDirection: 'row',
