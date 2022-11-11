@@ -1,16 +1,12 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 import colors from '../../assets/colors';
 import {Icon} from '@rneui/themed';
-import {ListItemSubtitle} from '@rneui/base/dist/ListItem/ListItem.Subtitle';
 
 const OrderItemCard = props => {
-  const navigation = useNavigation();
-
   const item = props.item;
   return (
-    <TouchableOpacity style={styles.container}>
+    <View style={styles.container}>
       <View>
         <Icon
           name="truck-delivery"
@@ -32,7 +28,7 @@ const OrderItemCard = props => {
         <Text style={styles.shippingText}>{item.shippingCost} x</Text>
         <Icon name="box" type="feather" color={colors.black} size={30} />
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

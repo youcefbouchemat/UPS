@@ -7,15 +7,12 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import colors from '../../assets/colors';
 import axios from 'axios';
 import {axiosInstance} from '../../config/axios';
 import OrderItemCard from '../Components/OrderItemCard';
 
 const Orders = () => {
-  const navigation = useNavigation();
-
   const [buttonClicked, setButtonClicked] = useState(false);
   const [orders, setOrders] = useState([]);
 
