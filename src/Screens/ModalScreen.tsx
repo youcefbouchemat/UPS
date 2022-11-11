@@ -1,6 +1,5 @@
 import {FlatList, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import colors from '../../assets/colors';
 import {useTailwind} from 'tailwind-rn/dist';
 import ModalScreenHeader from '../Components/ModalScreenHeader';
 import axios from 'axios';
